@@ -1,0 +1,4 @@
+sismo(nombre,fecha,hora,cuidad,pais,distancia,magnitud,longitud,latitud).
+tsunami(fecha, hora, cuidad, pais, riesgo, estado, referencia).
+riesgo(riesgo, color).
+child_of(joe, ralf).
