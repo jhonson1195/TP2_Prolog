@@ -5,21 +5,25 @@
  */
 package tp2;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Map;
 import org.jpl7.Query;
+import org.jpl7.Term;
 
 /**
  *
  * @author jhonson
  */
 public class MonitoreoInterfaz extends javax.swing.JFrame {
-
+    Calendar fecha = Calendar.getInstance();
     /**
      * Creates new form MonitoreoInterfaz
      */
     public MonitoreoInterfaz() {
         initComponents();
-        Calendar fecha = Calendar.getInstance();
+        
         jTextField1.setText(String.valueOf(fecha.get(Calendar.DAY_OF_MONTH)));
         jTextField4.setText(String.valueOf(fecha.get(Calendar.MONTH)));
         jTextField2.setText(String.valueOf(fecha.get(Calendar.YEAR)));
@@ -163,21 +167,42 @@ public class MonitoreoInterfaz extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    String t1 = "consult('bd.pl')";
-    Query q1 = new Query(t1);
-    System.out.println( t1 + " " + (q1.hasSolution() ? "Cargado" : "Fallo la carga del archivo") );
-    //--------------------------------------------------
-    String t2 = "asserta(hola(jhonson,_))";
-    Query q2 = new Query(t2);
-    System.out.println( t2 + " is " + (q2.hasSolution() ? "Si" : "No") );
+    ArrayList <Sismos> Lista = new ArrayList();
     
-    t2 = "riesgo(riesgo, color)";
-    q2 = new Query(t2);
-    System.out.println( t2 + " is " + (q2.hasSolution() ? "Si" : "No") );
-    //--------------------------------------------------
-   
+    for(int i =0; i<5; i++){
+        Sismos S = new Sismos();
+        S.Nombre="sismo"+i;
+        S.Fecha="01-01-2015";
+        S.Hora="10:00";
+        S.Pais="pais"+i;
+        S.Cuidad="ciudad"+i;
+        S.Magnitud= i+3;
+        S.latitud=56;
+        S.longitud=78;
+        S.profundidad=40+i;
+        Lista.add(S);
+    }
     
+    String Comando = "consult('bd.pl')";
+    Query Ejecucion = new Query(Comando);
+    Ejecucion.hasSolution();
+    
+    for (Sismos Ele : Lista) {
+        Comando ="asserta(sismo('"+Ele.Fecha+"','"+Ele.Hora+"',"+Ele.Cuidad+","+Ele.Pais+","
+                +Ele.profundidad+","+Ele.Magnitud+","+Ele.longitud+","+Ele.latitud+"))"; 
         
+        jTextArea1.append(">>Información encontrada: Sismo en "+Ele.Cuidad+", "+Ele.Pais+", con magnitud de "
+                + Ele.Magnitud+ " Se agregó la información en la Base de Conocimiento." +"\n");
+        Ejecucion = new Query(Comando);
+        Ejecucion.hasSolution();
+        
+    }
+    Comando="comprobar(F,H,C,P,Po,M,E)";
+    Ejecucion = new Query(Comando);
+    
+    Map<String, Term>[] ss4 = Ejecucion.allSolutions();
+    System.out.println(Arrays.toString(ss4));
+   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
