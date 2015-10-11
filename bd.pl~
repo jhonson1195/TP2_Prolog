@@ -1,17 +1,54 @@
 
 %sismo(fecha,hora,cuidad,pais,distancia,magnitud,longitud,latitud).
 %tsunami(fecha, hora, cuidad, pais, riesgo, estado, referencia).
-%riesgo(riesgo, color).
-%child_of(joe, ralf).
-%sismo('01-01-2015','10:00',ciudad0,pais0,40,6,78,56).
-%sismo('01-01-2015 10:00',ciudad1,pais1,41,5,78,56).
-%sismo('01-01-2015 10:00',ciudad1,pais1,41,7,78,56).
-comprobar(F,H,C,P,Po,M,E):- sismo(F,H,C,P,Po,M,_,_), M>4.0, E = 'hola'.
+
+sismo('01-01-2015','10:00','Illapel','Chile',40,4.3,78,56).
+sismo('01-01-2015 10:00',ciudad1,pais1,41,5,78,56).
+sismo('01-01-2015 10:00',ciudad1,pais1,41,7,78,56).
+
+riesgo('Chile','Illapel','Alto').
+
+%Caso 1
+riesgo_4a5_me_40('Muy bajo', amarillo).
+riesgo_4a5_me_40('Bajo', amarillo).
+riesgo_4a5_me_40('Media', naranja).
+riesgo_4a5_me_40('Alto', rojo).
+
+riesgo_4a5_ma_40('Muy bajo', 'no genera alerta').
+riesgo_4a5_ma_40('Bajo', 'no genera alerta').
+riesgo_4a5_ma_40('Media', amarillo).
+riesgo_4a5_ma_40('Media/Alto', naranja).
+
+%Caso 2
+
+riesgo_6a7_me_40('Muy bajo', 'no genera alerta').
+riesgo_6a7_me_40('Bajo', naranja).
+riesgo_6a7_me_40('Medio', rojo).
+riesgo_6a7_me_40('Alto', rojo).
+
+riesgo_6a7_ma_40('Muy bajo', 'no genera alerta').
+riesgo_6a7_ma_40('Bajo', 'no genera alerta').
+riesgo_6a7_ma_40('Media', naranja).
+riesgo_6a7_ma_40('Alto', naranja).
+
+alerta(C,P, M, Co,Ni,E):- sismo(F,H,C,P,Po,M,_,_) , M>=4.0, M=<5.9 ,riesgo(P,C,Ni),zonariesgo4_5(Po, Co, Ni), comparafecha(F, E).
+zonariesgo4_5(Po, Co, Ni):- Po<40, riesgo_4a5_me_40(Ni, Co). 
+zonariesgo4_5(Po, Co, Ni):- Po>=40, riesgo_4a5_ma_40(Ni, Co).
+
+%Caso 2
+alerta(C,P, M, Co,Ni,E):- sismo(F,H,C,P,Po,M,_,_) , M>=6.0, M=<7.9 ,riesgo(P,C,Ni),zonariesgo6_7(Po, Co, Ni), comparafecha(F, E).
+zonariesgo6_7(Po, Co, Ni):- Po<40, riesgo_6a7_me_40(Ni, Co). 
+zonariesgo6_7(Po, Co, Ni):- Po>=40, riesgo_6a7_ma_40(Ni, Co).
+
+
+
+
+
+
 
 %Compra las fechas
 comparafecha(X, Y):- fechaactual(F), X = F, Y ='Activa',!.
 comparafecha(_, Y):- Y = 'Levantada', !.   
-
 
 get_date_time_value(Key, Value) :- get_time(Stamp), stamp_date_time(Stamp, DateTime, local),date_time_value(Key, DateTime, Value).
 
