@@ -83,6 +83,8 @@ public class InterfazGrafica extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        IngresoManual Manual = new IngresoManual();
+        Manual.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
