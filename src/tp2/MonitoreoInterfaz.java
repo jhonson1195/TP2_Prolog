@@ -169,40 +169,66 @@ public class MonitoreoInterfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     ArrayList <Sismos> Lista = new ArrayList();
     
-    for(int i =0; i<5; i++){
         Sismos S = new Sismos();
-        S.Nombre="sismo"+i;
+        S.Nombre="sismo";
         S.Fecha="01-01-2015";
         S.Hora="10:00";
-        S.Pais="pais"+i;
-        S.Cuidad="ciudad"+i;
-        S.Magnitud= i+3;
+        S.Pais="Chile";
+        S.Cuidad="Illapel";
+        S.Magnitud= "4.3";
         S.latitud=56;
         S.longitud=78;
-        S.profundidad=40+i;
+        S.profundidad=34;
         Lista.add(S);
-    }
-    
-    String Comando = "consult('bd.pl')";
-    Query Ejecucion = new Query(Comando);
-    Ejecucion.hasSolution();
-    
-    for (Sismos Ele : Lista) {
-        Comando ="asserta(sismo('"+Ele.Fecha+"','"+Ele.Hora+"',"+Ele.Cuidad+","+Ele.Pais+","
-                +Ele.profundidad+","+Ele.Magnitud+","+Ele.longitud+","+Ele.latitud+"))"; 
         
-        jTextArea1.append(">>Información encontrada: Sismo en "+Ele.Cuidad+", "+Ele.Pais+", con magnitud de "
-                + Ele.Magnitud+ " Se agregó la información en la Base de Conocimiento." +"\n");
-        Ejecucion = new Query(Comando);
+        
+        Sismos S2 = new Sismos();
+        S2.Nombre="sismo";
+        S2.Fecha="01-01-2015";
+        S2.Hora="10:00";
+        S2.Pais="Panama";
+        S2.Cuidad="Pais Completo";
+        S2.Magnitud= "9";
+        S2.latitud=56;
+        S2.longitud=78;
+        S2.profundidad=34;
+        Lista.add(S2);
+    
+    
+        String Comando = "consult('bd.pl')";
+        Query Ejecucion = new Query(Comando);
         Ejecucion.hasSolution();
-        
-    }
-    Comando="comprobar(F,H,C,P,Po,M,E)";
-    Ejecucion = new Query(Comando);
-    
-    Map<String, Term>[] ss4 = Ejecucion.allSolutions();
-    System.out.println(Arrays.toString(ss4));
-   
+
+        for (Sismos Ele : Lista) {
+            Comando ="asserta(sismo('"+Ele.Fecha+"','"+Ele.Hora+"','"+Ele.Cuidad+"','"+Ele.Pais+"',"
+                    +Ele.profundidad+","+Ele.Magnitud+","+Ele.longitud+","+Ele.latitud+"))"; 
+
+            jTextArea1.append(">>Información encontrada: Sismo en "+Ele.Cuidad+", "+Ele.Pais+", con magnitud de "
+                    + Ele.Magnitud+ ". Se agregó la información en la Base de Conocimiento." +"\n");
+            Ejecucion = new Query(Comando);
+            Ejecucion.hasSolution();
+
+        }
+        Comando="alerta(C,P, M, Co,Ni,E, F, H)";
+        Ejecucion = new Query(Comando);
+
+        Map<String, Term>[] TodaLasSoluciones = Ejecucion.allSolutions();
+
+        if(TodaLasSoluciones !=null){
+            for(Map<String, Term> Solucion : TodaLasSoluciones ){
+                String Alerta = ">>NUEVA ALERTA DE TSUNAMI en "+ Solucion.get("C") +", "+  
+                Solucion.get("P")+" con nivel "+ Solucion.get("Co")+", "+Solucion.get("Ni")+
+                " !Alerta "+ Solucion.get("E")+"¡\n";
+                jTextArea1.append(Alerta.replace("'", ""));
+                
+            Comando ="asserta(tsunami("+Solucion.get("F")+","+Solucion.get("H")+","
+            +Solucion.get("C")+","+Solucion.get("P")+","+Solucion.get("Ni")+","+
+                     Solucion.get("E")+",'Referencia'"+"))";
+            System.out.println(Comando);
+            Ejecucion = new Query(Comando);
+            Ejecucion.hasSolution();
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
