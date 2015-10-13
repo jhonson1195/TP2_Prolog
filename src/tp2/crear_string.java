@@ -10,8 +10,14 @@ package tp2;
  * @author carlosr
  */
 
+import java.awt.Desktop;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,39 +31,52 @@ import java.util.logging.Logger;
  *
  * @author carlosr
  */
+
 public class crear_string {
-    String direccion1 ="http://earthquake.usgs.gov/fdsnws/event/1/query?format=xml&starttime=";
-    String direccion2= "&endtime=";
-    String direccion3 = "&minmagnitude=";
-    String fechaInicial;
-    String fechaFinal;
+    String direccion1 ="http://earthquake.usgs.gov/fdsnws/event/1/query?format=text&starttime=";
+    String direccion2 = "&minmagnitude=";
+    String fecha;
+    static String ruta="/tmp/archivo.txt";
+
     String magnitud;
     
     public crear_string(){
-        fechaInicial="";
-        fechaFinal="";
+        fecha="";
         magnitud="";
     }
     
-    public crear_string(String A,String B, String C){
-        fechaInicial=A;
-        fechaFinal=B;
+    public crear_string(String A, String C){
+        fecha=A;
+    
         magnitud=C;
     }
-     public void imprimir(){
-         String direccion;
-        direccion = direccion1+fechaInicial+direccion3+magnitud;
-        System.out.println(direccion);
+     public String imprimir(){
+        String direccion;
+        direccion = direccion1+fecha+direccion2+magnitud;
+        return direccion;
      }
-    
-    public static void main(String[] args){
-        crear_string direccionA= new crear_string("2004/12/26","2004/12/27","9");
-        direccionA.imprimir();
-    }
-    
-
-
+     
+     
+     public static void descargar(String url, String ficheroDestino) throws Exception {
  
+   URL ficheroUrl = new URL(url);
+   OutputStream outputStream;			
+        try (InputStream inputStream = ficheroUrl.openStream()) {
+            outputStream = new FileOutputStream(ficheroDestino); // path y nombre del nuevo fichero creado
+            byte[] b = new byte[2048];
+            int longitud;
+            while ((longitud = inputStream.read(b)) != -1) {
+                outputStream.write(b, 0, longitud);
+            }
+            
+            inputStream.close();  // Cerramos la conexión entrada
+        } // path y nombre del nuevo fichero creado
+   outputStream.close(); // Cerramos la conexión salida
+}
+
     
-    
+    public static void main(String[] args) throws Exception{
+        crear_string direccionA= new crear_string("2004/12/26","9");
+        crear_string.descargar(direccionA.imprimir(),ruta);
+    }   
 }
