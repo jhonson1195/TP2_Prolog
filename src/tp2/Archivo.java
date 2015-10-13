@@ -22,8 +22,8 @@ public class Archivo {
     BufferedReader br;
     FileReader fr1;
     BufferedReader br1;
-    static Stacks <Terremoto> terremotos = new Stacks();
-    String DireccionTXT="C:\\archivo.txt";
+    static Stacks <Sismos> terremotos = new Stacks();
+    String DireccionTXT="/tmp/archivo.txt";
     
     
     public Archivo (){
@@ -47,13 +47,16 @@ public class Archivo {
         String linea="";
         String lugar;
         String fechah;
+        String hora= "";
+        String ciudad="";
         String arreglo [];
-        String arreglo1 [];
-        String arreglo2 [] = new String[3];
-        String arreglo3 [] = new String[3];
+        String arreglo_hora [];
+        String arreglo_hora1 [];
+        String arreglo2 [];// = new String[3];
+        String arreglo3 [];// = new String[3];
         int lineas=0;
         int maximo=retornarTam();
-        while(lineas<=maximo){
+        while(lineas<maximo){
             lineas++;
             if((linea=br.readLine()).equals("#EventID|Time|Latitude|Longitude|Depth/km|Author|Catalog|Contributor|ContributorID|MagType|Magnitude|MagAuthor|EventLocationName")){
                 
@@ -61,34 +64,43 @@ public class Archivo {
             //System.out.println(linea);
             arreglo=linea.split("\\|");
             
-            Terremoto objeto = new Terremoto();
-            objeto.nombre=arreglo[5];
-            System.out.println("Nombre: " + objeto.nombre);
+            Sismos objeto = new Sismos();
+            objeto.Nombre=arreglo[5];
+            System.out.println("Nombre: " + objeto.Nombre);
+            
+            //***Manejo del campo hora y fecha****
             fechah=arreglo[1];
-            arreglo1=fechah.split(" ");
-            objeto.hora=arreglo1[1];
-            System.out.println("Hora: " + objeto.hora);
-            objeto.fecha=arreglo1[0];
-            System.out.println("Fecha: " + objeto.fecha);
+            arreglo_hora=fechah.split(" ");
+            hora=arreglo_hora[1];
+            arreglo_hora1=hora.split("\\.");
+            objeto.Hora=arreglo_hora1[0];
+            System.out.println("Hora: " + objeto.Hora);
+            objeto.Fecha=arreglo_hora[0];
+            System.out.println("Fecha: " + objeto.Fecha);
+            
+            //***Manejo del pais y la ciudad***
+               
             lugar=arreglo[12];
             arreglo2=lugar.split(",");
-            if (arreglo2[1]==""){
-                arreglo3[0]=arreglo2[0];
-                arreglo3[1]="";
-            }else{
-                arreglo3[0]=arreglo2[1];
-            }
-            arreglo3[1]=arreglo2[0];
-            objeto.pais=arreglo3[0];
-            System.out.println("Pais: " + objeto.pais );
-            objeto.ciudad=arreglo3[1];
-            System.out.println("Ciudad: " + objeto.ciudad );
-            objeto.magnitud=arreglo[10];
-            System.out.println("Magnitud: " + objeto.magnitud);
+            ciudad=arreglo2[0];
+            arreglo3= ciudad.split("of");
+            //if ("".equals(arreglo2[1])){
+             //   arreglo3[0]=arreglo2[0];
+            //    arreglo3[1]="";
+            //}else{
+             //   arreglo3[0]=arreglo2[1];
+            //}
+            //arreglo3[1]=arreglo2[0];
+            objeto.Pais=arreglo2[1];
+            System.out.println("Pais: " + objeto.Pais );
+            objeto.Ciudad=arreglo3[1];
+            System.out.println("Ciudad: " + objeto.Ciudad );
+            objeto.Magnitud=arreglo[10];
+            System.out.println("Magnitud: " + objeto.Magnitud);
             objeto.profundidad=arreglo[4];
             System.out.println("Profundidad: " + objeto.profundidad);
-            objeto.longuitud=arreglo[3];
-            System.out.println("Longuitud: " + objeto.longuitud);
+            objeto.longitud=arreglo[3];
+            System.out.println("Longuitud: " + objeto.longitud);
             objeto.latitud=arreglo[2];
             System.out.println("Latitud: " + objeto.latitud);
             System.out.println("Nuevo terremoto");
@@ -125,7 +137,7 @@ public class Archivo {
         int maximo = retornarTam();
 
         for(int i=0;i<maximo;i++){
-            Terremoto referencia;
+            Sismos referencia;
             referencia = terremotos.pop();
         }
     }

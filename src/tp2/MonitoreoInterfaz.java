@@ -184,32 +184,11 @@ public class MonitoreoInterfaz extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(MonitoreoInterfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
-    ArrayList <Sismos> Lista = new ArrayList();
+        cargar C =new cargar(); 
+
+    ArrayList <Sismos> Lista =C.ExtraerDatos("", 6);
     
-        Sismos S = new Sismos();
-        S.Nombre="sismo";
-        S.Fecha="01-01-2015";
-        S.Hora="10:00";
-        S.Pais="Chile";
-        S.Cuidad="Illapel";
-        S.Magnitud= "4.3";
-        S.latitud=56;
-        S.longitud=78;
-        S.profundidad=34;
-        Lista.add(S);
         
-        
-        Sismos S2 = new Sismos();
-        S2.Nombre="sismo";
-        S2.Fecha="01-01-2015";
-        S2.Hora="10:00";
-        S2.Pais="Panama";
-        S2.Cuidad="Pais Completo";
-        S2.Magnitud= "9";
-        S2.latitud=56;
-        S2.longitud=78;
-        S2.profundidad=34;
-        Lista.add(S2);
     
     
         String Comando = "consult('bd.pl')";
@@ -217,10 +196,10 @@ public class MonitoreoInterfaz extends javax.swing.JFrame {
         Ejecucion.hasSolution();
 
         for (Sismos Ele : Lista) {
-            Comando ="asserta(sismo('"+Ele.Fecha+"','"+Ele.Hora+"','"+Ele.Cuidad+"','"+Ele.Pais+"',"
+            Comando ="asserta(sismo('"+Ele.Fecha+"','"+Ele.Hora+"','"+Ele.Ciudad+"','"+Ele.Pais+"',"
                     +Ele.profundidad+","+Ele.Magnitud+","+Ele.longitud+","+Ele.latitud+"))"; 
 
-            jTextArea1.append(">>Información encontrada: Sismo en "+Ele.Cuidad+", "+Ele.Pais+", con magnitud de "
+            jTextArea1.append(">>Información encontrada: Sismo en "+Ele.Ciudad+", "+Ele.Pais+", con magnitud de "
                     + Ele.Magnitud+ ".\n Se agregó la información en la Base de Conocimiento." +"\n");
             Ejecucion = new Query(Comando);
             Ejecucion.hasSolution();

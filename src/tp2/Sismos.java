@@ -10,6 +10,6 @@ package tp2;
  * @author jhonson
  */
 public class Sismos {
-    String Nombre, Fecha, Hora, Cuidad, Magnitud, Pais;
-    int  profundidad, longitud, latitud; 
+    String Nombre, Fecha, Hora, Ciudad, Magnitud, Pais;
+    String  profundidad, longitud, latitud; 
 }
