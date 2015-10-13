@@ -9,14 +9,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jpl7.Query;
 import org.jpl7.Term;
+import static tp2.crearDireccion.ruta;
 
 /**
  *
  * @author jhonson
  */
 public class MonitoreoInterfaz extends javax.swing.JFrame {
+    crearDireccion direccionWeb = new crearDireccion();
     Calendar fecha = Calendar.getInstance();
     /**
      * Creates new form MonitoreoInterfaz
@@ -150,7 +154,8 @@ public class MonitoreoInterfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+            // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -159,6 +164,7 @@ public class MonitoreoInterfaz extends javax.swing.JFrame {
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -166,7 +172,18 @@ public class MonitoreoInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        
+// TODO add your handling code here:
+        direccionWeb.dia=jTextField1.getText();
+        direccionWeb.mes=jTextField4.getText();
+        direccionWeb.year=jTextField2.getText();
+        direccionWeb.magnitud=jTextField3.getText();
+        try {
+            crearDireccion.descargar(direccionWeb.imprimir(),ruta);
+        } catch (Exception ex) {
+            Logger.getLogger(MonitoreoInterfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
     ArrayList <Sismos> Lista = new ArrayList();
     
         Sismos S = new Sismos();

@@ -32,31 +32,41 @@ import java.util.logging.Logger;
  * @author carlosr
  */
 
-public class crear_string {
+public class crearDireccion {
     String direccion1 ="http://earthquake.usgs.gov/fdsnws/event/1/query?format=text&starttime=";
     String direccion2 = "&minmagnitude=";
     String fecha;
+    String dia;
+    String mes;
+    String year;
     static String ruta="/tmp/archivo.txt";
 
     String magnitud;
     
-    public crear_string(){
+    public crearDireccion(){
         fecha="";
         magnitud="";
+        dia="";
+        mes="";
+        year="";
+        
     }
     
-    public crear_string(String A, String C){
-        fecha=A;
-    
+    public crearDireccion(String year,String mes, String dia, String C){
+        this.dia =dia;
+        this.mes=mes;
+        this.year=year;
+        fecha = year +"/"+mes + "/"+ dia;
         magnitud=C;
     }
      public String imprimir(){
         String direccion;
+        fecha=year +"/"+mes + "/"+ dia;
         direccion = direccion1+fecha+direccion2+magnitud;
+        System.out.println(direccion);
         return direccion;
      }
-     
-     
+
      public static void descargar(String url, String ficheroDestino) throws Exception {
  
    URL ficheroUrl = new URL(url);
@@ -76,7 +86,7 @@ public class crear_string {
 
     
     public static void main(String[] args) throws Exception{
-        crear_string direccionA= new crear_string("2004/12/26","9");
-        crear_string.descargar(direccionA.imprimir(),ruta);
+        crearDireccion direccionA= new crearDireccion("2004","12","26","9");
+        crearDireccion.descargar(direccionA.imprimir(),ruta);
     }   
 }
