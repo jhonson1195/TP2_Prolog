@@ -10,8 +10,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
-
+import static tp2.cargar.Lista;
 /**
  *
  * @author carlosr
@@ -22,8 +23,9 @@ public class Archivo {
     BufferedReader br;
     FileReader fr1;
     BufferedReader br1;
-    static Stacks <Sismos> terremotos = new Stacks();
+    //static Stacks <Sismos> terremotos = new Stacks();
     String DireccionTXT="/tmp/archivo.txt";
+    
     
     
     public Archivo (){
@@ -42,7 +44,7 @@ public class Archivo {
         br1 = new BufferedReader(fr1);
     }
     
-    public Stacks allTerremotos() throws FileNotFoundException, IOException{
+    public void allTerremotos() throws FileNotFoundException, IOException{
         abrirArchivo(DireccionTXT);
         String linea="";
         String lugar;
@@ -52,7 +54,7 @@ public class Archivo {
         String arreglo [];
         String arreglo_hora [];
         String arreglo_hora1 [];
-        String arreglo2 [];// = new String[3];
+        String arreglo2 [];// = new String[3];v
         String arreglo3 [];// = new String[3];
         int lineas=0;
         int maximo=retornarTam();
@@ -104,11 +106,12 @@ public class Archivo {
             objeto.latitud=arreglo[2];
             System.out.println("Latitud: " + objeto.latitud);
             System.out.println("Nuevo terremoto");
-            terremotos.push(objeto);
+            //terremotos.push(objeto);
+            Lista.add(objeto);
         
             }
         }
-        return terremotos;
+       // return ListaA;
     }
         
         
@@ -133,14 +136,7 @@ public class Archivo {
         return tam;
     }
     
-        public void RecorrerPilaTerremtos() throws IOException{
-        int maximo = retornarTam();
 
-        for(int i=0;i<maximo;i++){
-            Sismos referencia;
-            referencia = terremotos.pop();
-        }
-    }
         public static void main(String[] args) throws IOException{
             Archivo prueba = new Archivo();
             prueba.allTerremotos();
