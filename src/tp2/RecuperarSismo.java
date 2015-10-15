@@ -13,5 +13,5 @@ import java.util.ArrayList;
  */
 public interface RecuperarSismo{
     //Ver punto 3, c
-    ArrayList <Sismos> ExtraerDatos(String Fecha, int magnitud); 
+    ArrayList <Sismos> ExtraerDatos(String Fecha_Inicial,String Fecha_Final, String magnitud); 
 }
