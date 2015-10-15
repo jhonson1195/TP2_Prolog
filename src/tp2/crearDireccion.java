@@ -40,6 +40,7 @@ public class crearDireccion {
     String mes;
     String year;
     static String ruta="/tmp/archivo.txt";
+    //static String ruta="C://archivo.txt";
 
     String magnitud;
     
@@ -86,7 +87,7 @@ public class crearDireccion {
 
     
     public static void main(String[] args) throws Exception{
-        crearDireccion direccionA= new crearDireccion("2004","12","26","9");
+        crearDireccion direccionA= new crearDireccion("2000","05","29","6");
         crearDireccion.descargar(direccionA.imprimir(),ruta);
     }   
 }

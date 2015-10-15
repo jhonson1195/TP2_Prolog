@@ -25,6 +25,7 @@ public class Archivo {
     BufferedReader br1;
     //static Stacks <Sismos> terremotos = new Stacks();
     String DireccionTXT="/tmp/archivo.txt";
+     //String DireccionTXT="C://archivo.txt";
     
     
     
@@ -44,8 +45,10 @@ public class Archivo {
         br1 = new BufferedReader(fr1);
     }
     
+    @SuppressWarnings("empty-statement")
     public void allTerremotos() throws FileNotFoundException, IOException{
         abrirArchivo(DireccionTXT);
+        String nombre="";
         String linea="";
         String lugar;
         String fechah;
@@ -54,7 +57,7 @@ public class Archivo {
         String arreglo [];
         String arreglo_hora [];
         String arreglo_hora1 [];
-        String arreglo2 [];// = new String[3];v
+        String arreglo2 [] = new String[3];
         String arreglo3 [];// = new String[3];
         int lineas=0;
         int maximo=retornarTam();
@@ -67,8 +70,9 @@ public class Archivo {
             arreglo=linea.split("\\|");
             
             Sismos objeto = new Sismos();
-            objeto.Nombre=arreglo[5];
-            System.out.println("Nombre: " + objeto.Nombre);
+            
+            
+            
             
             //***Manejo del campo hora y fecha****
             fechah=arreglo[1];
@@ -84,29 +88,59 @@ public class Archivo {
                
             lugar=arreglo[12];
             arreglo2=lugar.split(",");
-            ciudad=arreglo2[0];
-            arreglo3= ciudad.split("of");
-            //if ("".equals(arreglo2[1])){
-             //   arreglo3[0]=arreglo2[0];
-            //    arreglo3[1]="";
-            //}else{
-             //   arreglo3[0]=arreglo2[1];
-            //}
-            //arreglo3[1]=arreglo2[0];
-            objeto.Pais=arreglo2[1];
-            System.out.println("Pais: " + objeto.Pais );
-            objeto.Ciudad=arreglo3[1];
-            System.out.println("Ciudad: " + objeto.Ciudad );
-            objeto.Magnitud=arreglo[10];
-            System.out.println("Magnitud: " + objeto.Magnitud);
+            //System.out.println("PRUEBAS: " + arreglo2[0]);
+            //System.out.println("PRUEBAS***: " + arreglo2[1]);
+            if (arreglo2.length==1){
+                ciudad ="Pais Completo";
+                objeto.Ciudad=ciudad;
+                System.out.println("Ciudad: " + objeto.Ciudad );
+                objeto.Pais=arreglo2[0];
+                System.out.println("Pais: " + objeto.Pais );
+                objeto.Magnitud=arreglo[10];
+                System.out.println("Magnitud: " + objeto.Magnitud);
+                nombre=objeto.Pais + " "+ objeto.Magnitud;
+                objeto.Nombre=nombre;
+                System.out.println("Nombre: " + objeto.Nombre);
+            }else{
+                ciudad=arreglo2[0];
+                objeto.Pais=arreglo2[1];
+                System.out.println("Pais: " + objeto.Pais );
+                arreglo3= ciudad.split("of");
+                if (arreglo3.length==1){
+                    objeto.Ciudad=arreglo3[0];
+                    System.out.println("Ciudad: " + objeto.Ciudad );
+                    objeto.Magnitud=arreglo[10];
+                    System.out.println("Magnitud: " + objeto.Magnitud);
+                    nombre=objeto.Pais +" "+ objeto.Ciudad +" "+ objeto.Magnitud;
+                    objeto.Nombre=nombre;
+                    System.out.println("Nombre: " + objeto.Nombre);
+                }else{
+                    objeto.Ciudad=arreglo3[1];
+                    System.out.println("Ciudad: " + objeto.Ciudad );
+                    objeto.Magnitud=arreglo[10];
+                    System.out.println("Magnitud: " + objeto.Magnitud);
+                    nombre=objeto.Pais +" "+ objeto.Ciudad +" "+ objeto.Magnitud;
+                    objeto.Nombre=nombre;
+                    System.out.println("Nombre: " + objeto.Nombre);
+                }
+                
+                
+            }
+            
+            
+            // *** Manejo de la magnitud ***
+            
             objeto.profundidad=arreglo[4];
             System.out.println("Profundidad: " + objeto.profundidad);
             objeto.longitud=arreglo[3];
             System.out.println("Longuitud: " + objeto.longitud);
             objeto.latitud=arreglo[2];
             System.out.println("Latitud: " + objeto.latitud);
+            
+            
             System.out.println("Nuevo terremoto");
             //terremotos.push(objeto);
+           
             Lista.add(objeto);
         
             }
