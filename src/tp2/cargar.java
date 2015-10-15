@@ -60,6 +60,7 @@ public class  cargar implements RecuperarSismo{
     public String imprimir(){
         String direccion;
         fecha_Inicial=year +"/"+mes + "/"+ dia;
+        fecha_Final= year_F +"/"+mes_F + "/"+ dia_F;
         direccion = direccion1+fecha_Inicial+direccion3+fecha_Final+direccion2+magnitud;
         System.out.println(direccion);
         return direccion;
