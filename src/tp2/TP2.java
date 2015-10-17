@@ -48,7 +48,11 @@ public class TP2 {
     System.out.println(Arrays.toString(ss4));
     
     */
-    InterfazGrafica Interfaz =new InterfazGrafica();
+    String Comando = "consult('bd.pl')";
+    Query Ejecucion = new Query(Comando);
+    Ejecucion.hasSolution();
+    
+    MonitoreoInterfaz Interfaz =new MonitoreoInterfaz();
     Interfaz.setVisible(true);
     }
     

@@ -5,6 +5,11 @@
  */
 package tp2;
 
+import java.util.Map;
+import javax.swing.table.DefaultTableModel;
+import org.jpl7.Query;
+import org.jpl7.Term;
+
 /**
  *
  * @author jhonson
@@ -14,8 +19,20 @@ public class IngresoManual extends javax.swing.JFrame {
     /**
      * Creates new form IngresoManual
      */
-    public IngresoManual() {
+    DefaultTableModel Modelo =new DefaultTableModel();
+    MonitoreoInterfaz Cuadro;
+    
+    public IngresoManual(MonitoreoInterfaz Cuadro) {
         initComponents();
+        this.Cuadro=Cuadro;
+        this.setResizable(false);
+        setDefaultCloseOperation(0);
+        setTitle("Ingreso manual de datos");
+        jTable2.setModel(Modelo);
+    }
+
+    private IngresoManual() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -27,6 +44,8 @@ public class IngresoManual extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -57,189 +76,201 @@ public class IngresoManual extends javax.swing.JFrame {
         jTextField13 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField14 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jTextField15 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jTextField16 = new javax.swing.JTextField();
+        jTextField17 = new javax.swing.JTextField();
+        jTextField18 = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        jTextField19 = new javax.swing.JTextField();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Sismo");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         jLabel2.setText("Fecha:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         jLabel3.setText("Pais:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
         jLabel4.setText("Cuidad:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
         jLabel5.setText("Profundidad:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         jLabel6.setText("Magnitud");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         jLabel7.setText("Latitud");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
         jLabel8.setText("Longitud");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 100, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 100, -1));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 100, -1));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 100, -1));
 
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 100, -1));
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 100, -1));
+        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 100, -1));
 
         jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
 
         jLabel9.setText("Riesgo:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, -1, -1));
 
         jLabel10.setText("Estado:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, -1, -1));
 
         jLabel11.setText("Referencia:");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, -1, -1));
+        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 93, -1));
+        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 93, -1));
+        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, 93, -1));
+        getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 90, -1));
 
         jTextField12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField12ActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 90, -1));
 
         jLabel13.setText("Tsunami");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
 
         jLabel14.setText("Fecha:");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
 
         jLabel15.setText("Pais:");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, -1, -1));
+        getContentPane().add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 93, 30));
 
         jLabel16.setText("Cuidad:");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
 
         jButton2.setText("Agregar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)))
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel5))
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jLabel10)
-                                            .addComponent(jLabel9))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel16)
-                                            .addGap(30, 30, 30)))
-                                    .addComponent(jLabel14))
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                                    .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField10, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField11, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField12, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField13, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addComponent(jLabel15))
-                        .addGap(82, 82, 82))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(95, 95, 95))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel13))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(59, Short.MAX_VALUE))
-        );
+        jButton3.setText("Cerrar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 610, -1, -1));
+
+        jLabel12.setText("Hora:");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        getContentPane().add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 100, -1));
+
+        jLabel17.setText("Hora:");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, -1, -1));
+        getContentPane().add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 93, -1));
+
+        jButton4.setText("Consulta");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
+
+        jButton5.setText("Consulta");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, -1, -1));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 368, 672, 230));
+
+        jLabel18.setText("Zona Riesgo");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
+
+        jLabel19.setText("Pais:");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, -1));
+
+        jLabel20.setText("Cuidad:");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
+
+        jLabel21.setText("Nivel:");
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, -1, -1));
+        getContentPane().add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 90, -1));
+        getContentPane().add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 90, -1));
+        getContentPane().add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 90, -1));
+
+        jButton6.setText("Consulta");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, -1, -1));
+
+        jLabel22.setText("Nombre:");
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        getContentPane().add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 100, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -252,6 +283,208 @@ public class IngresoManual extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField12ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String Comando ="asserta(sismo('"+jTextField1.getText()+"','"+jTextField14.getText()+"','"+jTextField3.getText()+"','"+jTextField2.getText()+"',"
+                    +jTextField4.getText()+","+jTextField5.getText()+","+jTextField7.getText()+","+jTextField6.getText()+"))"; 
+            Query Ejecucion = new Query(Comando);
+            System.out.println(Comando);
+            Ejecucion.hasSolution();
+            Comando=">>Información encontrada: Sismo en "+jTextField3.getText()+", "+jTextField2.getText()+", con magnitud de "
+                    + jTextField5.getText()+ ".\n Se agregó la información en la Base de Conocimiento." +"\n";
+            Cuadro.AgregarCuadro(Comando);
+            
+            Comando="alerta('"+jTextField3.getText()+"','"+jTextField2.getText()+"',"+jTextField5.getText()+",Co,Ni,E,"+"'"+
+                    jTextField1.getText()+"',"+jTextField4.getText()+")";
+            Ejecucion = new Query(Comando);
+            if(Ejecucion.hasSolution()){
+                Map<String, Term> Soluciones = Ejecucion.oneSolution();
+                String Alerta = ">>NUEVA ALERTA DE TSUNAMI en "+ jTextField3.getText() +", "+  
+                jTextField2.getText()+" con nivel "+ Soluciones.get("Co")+", "+Soluciones.get("Ni")+
+                " !Alerta "+ Soluciones.get("E")+"¡\n";
+                Cuadro.AgregarCuadro(Alerta.replace("'", ""));
+                
+                Comando ="asserta(tsunami('"+jTextField2+"','"+jTextField14+"','"
+                +jTextField3.getText()+"','"+jTextField3.getText()+"',"+Soluciones.get("Ni")+","+
+                         Soluciones.get("E")+",'Referencia'"+"))";
+                System.out.println(Comando);
+                Ejecucion = new Query(Comando);
+                Ejecucion.hasSolution();
+            }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String Comando ="asserta(tsunami('"+jTextField8.getText()+"','"+jTextField15.getText()+"','"
+                +jTextField10.getText()+"','"+jTextField9.getText()+"','"+jTextField11.getText()+"','"+
+                         jTextField12.getText()+"','Referencia'"+"))";
+                Query Ejecucion = new Query(Comando);
+                Ejecucion.hasSolution();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+        String Comando;
+        
+        if("".equals(jTextField19.getText())){
+            Comando="sismo(Nombre,";
+        }else{ 
+            Comando="sismo('"+jTextField19.getText()+"',";
+        }
+        if("".equals(jTextField1.getText())){
+            Comando+="Fecha,";
+        }else{ 
+            Comando+="'"+jTextField1.getText()+"',";
+        }
+        if("".equals(jTextField14.getText())){
+            Comando+="Hora,";
+        }else{ 
+            Comando+="'"+jTextField14.getText()+"',";
+        }
+        if("".equals(jTextField3.getText())){
+            Comando+="Ciudad,";
+        }else{ 
+            Comando+="'"+jTextField3.getText()+"',";
+        }
+        if("".equals(jTextField2.getText())){
+            Comando+="Pais,";
+        }else{ 
+            Comando+="'"+jTextField2.getText()+"',";
+        } 
+        if("".equals(jTextField4.getText())){
+            Comando+="Profundidad,";
+        }else{ 
+            Comando+=jTextField4.getText()+",";
+        }
+        
+        if("".equals(jTextField5.getText())){
+            Comando+="Magnitud,";
+        }else{ 
+            Comando+=jTextField5.getText()+",";
+        }
+        
+        if("".equals(jTextField7.getText())){
+            Comando+="Longitud,";
+        }else{ 
+            Comando+=jTextField7.getText()+",";
+        }
+        
+        if("".equals(jTextField6.getText())){
+            Comando+="Latitud)";
+        }else{ 
+            Comando+=jTextField6.getText()+")";
+        }
+        
+        Query Ejecucion = new Query(Comando);
+        Map<String, Term>[] TodaLasSoluciones = Ejecucion.allSolutions();
+        if(TodaLasSoluciones !=null){
+            Object Columnas [] = TodaLasSoluciones[0].keySet().toArray();
+            Modelo = new DefaultTableModel(null,Columnas);
+            jTable2.setModel(Modelo);        
+            for(Map<String, Term> Solucion : TodaLasSoluciones ){
+            Object Fila [] =Solucion.values().toArray();
+            Modelo.addRow(Fila);
+            }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        //su
+        String Comando;
+        
+        if("".equals(jTextField8.getText())){
+            Comando="tsunami(Fecha,";
+        }else{ 
+            Comando="tsunami('"+jTextField8.getText()+"',";
+        }
+        if("".equals(jTextField15.getText())){
+            Comando+="Hora,";
+        }else{ 
+            Comando+="'"+jTextField15.getText()+"',";
+        }
+        if("".equals(jTextField9.getText())){
+            Comando+="Ciudad,";
+        }else{ 
+            Comando+="'"+jTextField9.getText()+"',";
+        }
+        if("".equals(jTextField10.getText())){
+            Comando+="Pais,";
+        }else{ 
+            Comando+="'"+jTextField10.getText()+"',";
+        } 
+        if("".equals(jTextField11.getText())){
+            Comando+="Riesgo,";
+        }else{ 
+            Comando+="'"+jTextField11.getText()+"',";
+        }
+        
+        if("".equals(jTextField12.getText())){
+            Comando+="Estado,";
+        }else{ 
+            Comando+="'"+jTextField12.getText()+"',";
+        }
+        
+        if("".equals(jTextField13.getText())){
+            Comando+="Referencia)";
+        }else{ 
+            Comando+="'"+jTextField13.getText()+"')";
+        }
+        System.out.print(Comando);
+
+        Query Ejecucion = new Query(Comando);
+        Map<String, Term>[] TodaLasSoluciones = Ejecucion.allSolutions();
+        if(TodaLasSoluciones !=null){
+            Object Columnas [] = TodaLasSoluciones[0].keySet().toArray();
+            Modelo = new DefaultTableModel(null,Columnas);
+            jTable2.setModel(Modelo);        
+            for(Map<String, Term> Solucion : TodaLasSoluciones ){
+            Object Fila [] =Solucion.values().toArray();
+            Modelo.addRow(Fila);
+            }
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        //riesgo('Estados Unidos','Carolina del Norte','Bajo').
+        String Comando;
+        
+        if("".equals(jTextField16.getText())){
+            Comando="riesgo(Pais,";
+        }else{ 
+            Comando="riesgo('"+jTextField16.getText()+"',";
+        }
+        if("".equals(jTextField17.getText())){
+            Comando+="Ciudad,";
+        }else{ 
+            Comando+="'"+jTextField17.getText()+"',";
+        }
+        if("".equals(jTextField18.getText())){
+            Comando+="Nivel)";
+        }else{ 
+            Comando+="'"+jTextField18.getText()+"')";
+        }
+        Query Ejecucion = new Query(Comando);
+        Map<String, Term>[] TodaLasSoluciones = Ejecucion.allSolutions();
+        if(TodaLasSoluciones !=null){
+            Object Columnas [] = TodaLasSoluciones[0].keySet().toArray();
+            Modelo = new DefaultTableModel(null,Columnas);
+            jTable2.setModel(Modelo);        
+            for(Map<String, Term> Solucion : TodaLasSoluciones ){
+            Object Fila [] =Solucion.values().toArray();
+            Modelo.addRow(Fila);
+            }
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -280,24 +513,33 @@ public class IngresoManual extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IngresoManual().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new IngresoManual().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -305,11 +547,21 @@ public class IngresoManual extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField14;
+    private javax.swing.JTextField jTextField15;
+    private javax.swing.JTextField jTextField16;
+    private javax.swing.JTextField jTextField17;
+    private javax.swing.JTextField jTextField18;
+    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
