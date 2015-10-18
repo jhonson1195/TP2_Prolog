@@ -9,6 +9,9 @@ package tp2;
  *
  * @author jhonson
  */
+
+
+//Clase utilizada para guardar la informacion de los sismos y sus respectivos atributos.
 public class Sismos {
     String Nombre, Fecha, Hora, Ciudad, Magnitud, Pais;
     String  profundidad, longitud, latitud; 
